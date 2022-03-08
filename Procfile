@@ -1,0 +1,1 @@
+web: gunicorn IncomesExpenses.wsgi --log-file -
