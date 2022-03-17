@@ -81,7 +81,7 @@ class RegistrationView(View):
                 domain = get_current_site(request).domain
                 link = reverse('authenticate:activate', kwargs={
                                'uidb64': uidb64, 'token': accout_activation_token.make_token(user)})
-                activate_url = f'http://{domain}{link}'
+                activate_url = 'http://'+domain+link
 
                 email_subject = "Activate your account"
                 email_body = f"Hi, {user.username}. Please click this link to verify your account\n" + activate_url
