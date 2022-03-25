@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Delete Income</h2>
+    <div class="card mt-3">
+        <div class="card-body">
+            <form action="" method="post">
+                {% include 'partials/messages.html' %}
+                {% csrf_token %}
+                <p>Do you want to remove this {{income.source}} income permanently?</p>
+                <input type="submit" class="btn btn-danger btn-sm" value="Yes, Delete">
+                <a href="{% url 'income:incomes' %}" class="btn btn-info btn-sm">Cancel</a>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+
+{% endblock content %}

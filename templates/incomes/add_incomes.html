@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container mt-4">
+  <h3>Add Income</h3>
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'income:incomes' %}">Income</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Add Income</li>
+    </ol>
+  </nav>
+
+
+  <div class="card">
+    <div class="card-body">
+      <form action="" method="post">
+        {% include 'partials/messages.html' %}
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="">Amount</label>
+          <input type="number" class="form-control" name="amount" value="{{ values.amount }}">
+        </div>
+        <div class="mb-3">
+          <label for="">Description</label>
+          <input type="text" class="form-control" name="description"  value="{{ values.description}}">
+        </div>
+        <div class="mb-3">
+          <label for="">Source</label>
+          <select class="form-control" name="source">
+            {% for source in sources %}
+            <option name="source" value="{{ source.name}}">{{ source.name}}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="">Date of Income</label>
+          <input type="date" class="form-control" name="income-date">
+        </div>
+        <input type="submit" value="Submit" class="btn btn-primary btn-primary-sm">
+      </form>
+    </div>
+
+  </div>
+</div>
+
+
+{% endblock content %}

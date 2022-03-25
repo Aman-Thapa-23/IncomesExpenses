@@ -5,12 +5,12 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>TrulyExpenses {% block title %} {% endblock title %}</title>
+    <title>ExpenseTracker {% block title %} {% endblock title %}</title>
 
     <!-- Bootstrap core CSS -->
 <link href="{% static 'css/bootstrap.min.css'  %}" rel="stylesheet">
 <link href="{% static 'css/main.css' %}" rel="stylesheet">
-    
+
     <!-- Custom styles for this template -->
     <link href="{% static 'css/dashboard.css' %}" rel="stylesheet">
   </head>
@@ -21,10 +21,13 @@
   <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
-  <div class="navbar-nav">
+  <div class="navbar-nav" style="display: flex; flex-direction: row; align-items: center;">
     <div class="nav-item text-nowrap">
-
+      <span class="nav-link" href="">
+        ({{ request.user.username }})
+      </span>
+    </div>
+    <div class="nav-item text-nowrap mt-1 ms-3 me-2">
       <form action="{% url 'authenticate:logout' %}" method="post">
         {% csrf_token %}
         <input class="text text-capitalize" type="submit" value="Sign out">
