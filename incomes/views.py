@@ -7,9 +7,11 @@ from userpreferences.models import UserPreference
 from django.contrib import messages
 from django.core.paginator import Paginator
 import json
+import datetime
 
 # Create your views here.
 
+@login_required(login_url='/authentication/login')
 def search_incomes(request):
     if request.method == "POST":        
         search_str = json.loads(request.body).get('searchText')
@@ -19,6 +21,7 @@ def search_incomes(request):
         data = incomes.values()
   
         return JsonResponse(list(data), safe=False)
+
 
 @login_required(login_url='/authentication/login')
 def index(request):
@@ -33,6 +36,7 @@ def index(request):
     return render(request, 'incomes/index.html', context)
 
 
+@login_required(login_url='/authentication/login')
 def add_incomes(request):
     sources = Source.objects.all()
     if request.method == "POST":
@@ -66,6 +70,7 @@ def add_incomes(request):
         return render(request, 'incomes/add_incomes.html', context)
 
 
+@login_required(login_url='/authentication/login')
 def edit_income(request, id):
     income = Income.objects.get(pk=id)
     sources = Source.objects.all()
@@ -101,6 +106,7 @@ def edit_income(request, id):
     return render(request, 'incomes/edit_income.html', context)
 
 
+@login_required(login_url='/authentication/login')
 def delete_income(request, id):
     income = get_object_or_404(Income, pk=id)
     if request.method == "POST":
@@ -109,3 +115,35 @@ def delete_income(request, id):
         return redirect('income:incomes')
     context = {'income': income}
     return render(request, 'incomes/delete_income.html', context)
+
+
+
+def income_source_summary(request):
+    todays_date = datetime.date.today()
+    six_months_ago = todays_date - datetime.timedelta(days=30*6)
+    incomes = Income.objects.filter(owner = request.user ,date__gte=six_months_ago, date__lte=todays_date) 
+    finalrep = {}
+
+    def get_source(income):
+        return income.source
+    
+    source_list = list(set(map(get_source, incomes))) # set remove duplicate objects given by map and list will help to work easily
+    
+    def get_income_source_amount(source):
+        amount = 0
+        filter_by_source = incomes.filter(source=source)
+
+        for item in filter_by_source:
+            amount += item.amount
+        return amount
+
+
+    for x in incomes:
+        for y in source_list:
+            finalrep[y]= get_income_source_amount(y)
+    
+    return JsonResponse({'income_source_data': finalrep}, safe=False)
+
+
+def stats_view(request):
+    return render(request, 'incomes/incomes_stats.html')

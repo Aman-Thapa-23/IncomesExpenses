@@ -26,8 +26,12 @@
               required>
             <small class="float-end p-2 ShowPasswordToogle">SHOW</small>
           </div>
-          <input type="submit" class="btn btn-block btn-primary submit-btn mt-4" value="Login">
+          <input type="submit" class="btn btn-block btn-primary submit-btn mt-2" style="width: 100%;" value="Login">
         </form>
+        <div class="container">
+          <span class="mt-2">Don't have an account?<a href="{% url 'authenticate:register' %}">Register here</a></span><br>
+          <span class="mt-2">Forgot Password?<a href="{% url 'authenticate:password-reset-link' %}">Reset it</a></span>
+        </div>
       </div>
     </div>
   </div>

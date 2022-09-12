@@ -21,10 +21,10 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    path('', include('expenses.urls')),
-    path('income/', include('incomes.urls')),
-    path('authentication/', include('authentication.urls')),
-    path('preferences/', include('userpreferences.urls')),
+    path('', include('expenses.urls', namespace='expense')),
+    path('income/', include('incomes.urls', namespace='income')),
+    path('authentication/', include('authentication.urls', namespace='authentication')),
+    path('preferences/', include('userpreferences.urls', namespace='userprefer')),
 ]
 if settings.DEBUG:                                
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

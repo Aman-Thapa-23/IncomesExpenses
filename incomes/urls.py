@@ -10,4 +10,6 @@ urlpatterns =[
     path('<int:id>/edit-income', views.edit_income, name='edit-income'),
     path('<int:id>/delete-income', views.delete_income, name='delete-income'),
     path('search-incomes', csrf_exempt(views.search_incomes), name='search-incomes'),
+    path('income-source-summary', views.income_source_summary, name='income-source-summary'),
+    path('income-stats', views.stats_view, name='income-stats'),
 ]

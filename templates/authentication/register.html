@@ -19,13 +19,15 @@
 
           {% include 'partials/messages.html' %}
           <div class="mb-3">
-            <input type="text" name="username" class="form-control" placeholder="Username" id="UsernameField" value="{{ fieldvalues.username }}" required>
+            <input type="text" name="username" class="form-control" placeholder="Username" id="UsernameField"
+              value="{{ fieldvalues.username }}" required>
           </div>
           <div class="UsernameFeedBackArea invalid-feedback" style="display:none">
             <p class="text-sm-start text-success UsernameSuccessOutput"></p>
           </div>
           <div class="mb-3">
-            <input type="email" name="email" class="form-control" placeholder="Email Address" id="EmailField" value="{{ fieldvalues.email }}" required>
+            <input type="email" name="email" class="form-control" placeholder="Email Address" id="EmailField"
+              value="{{ fieldvalues.email }}" required>
           </div>
           <div class="emailFeedBackArea invalid-feedback" style="display:none">
             <p class="text-sm-start text-success EmailSuccessOutput"></p>
@@ -37,6 +39,9 @@
           </div>
           <input type="submit" class="btn btn-block btn-primary submit-btn mt-4" value="Register">
         </form>
+        <div class="container">
+          <span class="mt-4">Already have an account?<a href="{% url 'authenticate:login' %}">Login here</a></span><br>
+        </div>
       </div>
     </div>
   </div>

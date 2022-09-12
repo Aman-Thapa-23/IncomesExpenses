@@ -1,0 +1,38 @@
+/* Admin Header start */
+#header {
+    background:rgb(29, 54, 47);
+    color: #fff;
+} 
+
+#branding h1 {
+    color: #fff
+}
+/* Admin header end */
+
+/* Show bar of the folder of admin start */
+div.breadcrumbs {
+    background: rgb(58, 99, 87);
+    padding: 10px 40px;
+    border: none;
+    color: #fff;
+    text-align: left;
+}
+/* Show bar of the folder of admin end */
+
+/* Login button start */
+.login .submit-row {
+    padding: 0px !important;   
+}
+input[type=submit], input[type=button], .submit-row input {
+    width: 100%;
+    background:rgb(29, 54, 47);
+}
+/* Login button end */
+
+/* Model class on admin Start */
+
+.module h2, .module caption, .inline-group h2{
+    background: rgb(58, 99, 87);
+}
+
+/* Model class on admin End */
